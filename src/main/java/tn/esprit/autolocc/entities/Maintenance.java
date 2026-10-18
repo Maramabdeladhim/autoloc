@@ -2,9 +2,11 @@ package tn.esprit.autolocc.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import java.time.LocalDate;
 
 @Entity
@@ -27,4 +29,10 @@ public class Maintenance {
 
     @Column(nullable = false, length = 255)
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicule_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Vehicule vehicule;
 }

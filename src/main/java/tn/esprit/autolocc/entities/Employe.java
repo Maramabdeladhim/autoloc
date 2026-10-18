@@ -2,9 +2,11 @@ package tn.esprit.autolocc.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import tn.esprit.autolocc.entities.enums.Role;
 
 @Entity
@@ -24,6 +26,9 @@ public class Employe {
     @Enumerated(EnumType.STRING)
     Role Role;
 
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agence_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Agence agence;
 }
